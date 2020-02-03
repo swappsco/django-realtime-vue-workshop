@@ -65,7 +65,7 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
 ]
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ["webpack_loader"]
 
 LOCAL_APPS = [
     # Your stuff: custom apps go here
@@ -241,3 +241,9 @@ LOGGING = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+WEBPACK_LOADER = {
+    "DEFAULT": {
+        "BUNDLE_DIR_NAME": "bundles/",
+        "STATS_FILE": str(ROOT_DIR.path("webpack-stats.json")),
+    }
+}
