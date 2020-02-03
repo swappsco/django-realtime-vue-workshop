@@ -283,4 +283,4 @@ workshop/media/
 
 .pytest_cache/
 
-
+.vscode/
