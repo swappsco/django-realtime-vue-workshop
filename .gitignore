@@ -284,3 +284,6 @@ workshop/media/
 .pytest_cache/
 
 .vscode/
+
+# Ignore bundles
+workshop/static/bundles/

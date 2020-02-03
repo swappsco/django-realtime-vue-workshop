@@ -1,0 +1,38 @@
+{
+  "name": "workshop",
+  "version": "0.1.0",
+  "dependencies": {
+    "@kagronick/kgauge-vue": "^1.0.7",
+    "axios": "^0.19.0",
+    "chart.js": "^2.9.3",
+    "css-loader": "^3.2.0",
+    "install": "^0.13.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "npm": "^6.11.3",
+    "sass-loader": "^8.0.0",
+    "vue": "^2.6.10",
+    "vue-chartjs": "^3.5.0",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.40.2",
+    "webpack-bundle-tracker": "^0.4.2-beta",
+    "webpack-cli": "^3.3.9",
+    "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "autoprefixer-core": "~6.0.1",
+    "connect-livereload": "~0.6.1",
+    "cssnano": "~4.1.10",
+    "pixrem": "~5.0.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "watch": "webpack --config webpack.dev.js --watch",
+    "build": "webpack --config webpack.prod.js --progress --colors",
+    "build:production": "NODE_ENV=production webpack --config webpack.prod.js --progress --colors"
+  }
+}
