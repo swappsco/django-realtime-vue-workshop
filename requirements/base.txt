@@ -7,3 +7,6 @@ django==2.2.10  # pyup: < 3.0  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
 django-redis==4.11.0  # https://github.com/niwinz/django-redis
+
+# Webpack Loader
+django-webpack-loader==0.6.0
