@@ -3,7 +3,12 @@
     <lobby v-if="!survey_started" @roomNameChange="createRoom($event)" />
     <div class="row" v-if="survey_started">
       <div class="col">
-        <data-input :room_name="room_name" :results="results" :survey_title="survey_title" />
+        <data-input
+          :room_name="room_name"
+          @voteSent="sendVote($event)"
+          :results="results"
+          :survey_title="survey_title"
+        />
       </div>
       <div class="col">
         <chart :results="results" ref="chart" />
@@ -50,13 +55,49 @@ export default {
     },
     opening: function(e) {
       console.log("opening");
+      this.socket.send(
+        JSON.stringify({
+          type: "get_survey_data",
+          message: e
+        })
+      );
     },
     handlerData: function(e) {
       var data = JSON.parse(e.data);
+      var message = null;
       console.log(data);
+      if (data.type == "add_vote") {
+        message = data["message"];
+        this.organizeData(message);
+        this.$refs.chart.addColor();
+      }
+      if (data.type == "populate_data") {
+        var items = data["data"];
+        var that = this;
+        items.forEach(function(item, index) {
+          that.results[item["content"]] = item["count"];
+          that.$refs.chart.addColor();
+        });
+      }
+      this.$refs.chart.drawChart();
     },
     close: function(e) {
       console.error("Socket closed unexpectedly");
+    },
+    organizeData: function(key) {
+      if (key in this.results) {
+        this.results[key]++;
+      } else {
+        this.results[key] = 1;
+      }
+    },
+    sendVote: function(e) {
+      this.socket.send(
+        JSON.stringify({
+          type: "add_vote",
+          message: e
+        })
+      );
     }
   }
 };

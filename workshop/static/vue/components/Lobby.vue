@@ -7,13 +7,14 @@
         type="text"
         size="100"
         v-model="room_name"
+        @keyup.enter="changeRoomName"
         placeholder="Name of the survey e.g. Mayor of the City"
         class="form-control"
         ref="input_room"
       />
     </div>
     <br />
-    <button id="room-name-submit" class="btn btn-primary" @click="changeRoomName">Start Survey</button>
+    <button id="room-name-submit" @click="changeRoomName" class="btn btn-primary">Start Survey</button>
   </div>
 </template>
 
