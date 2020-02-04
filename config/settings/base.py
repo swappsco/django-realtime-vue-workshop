@@ -64,6 +64,7 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    "channels",
 ]
 THIRD_PARTY_APPS = ["webpack_loader"]
 
@@ -246,5 +247,14 @@ WEBPACK_LOADER = {
     "DEFAULT": {
         "BUNDLE_DIR_NAME": "bundles/",
         "STATS_FILE": str(ROOT_DIR.path("webpack-stats.json")),
+    }
+}
+
+ASGI_APPLICATION = "config.routing.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {"hosts": [("127.0.0.1", 6379)]},
     }
 }
