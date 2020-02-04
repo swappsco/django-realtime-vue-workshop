@@ -1,5 +1,6 @@
 pytz==2019.3  # https://github.com/stub42/pytz
 redis==3.4.1 # https://github.com/andymccurdy/redis-py
+argon2-cffi==19.2.0
 
 # Django
 # ------------------------------------------------------------------------------
