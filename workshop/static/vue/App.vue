@@ -35,6 +35,12 @@ export default {
       results: {}
     };
   },
+  created: function() {
+    console.log(this.app_name);
+    if (this.app_name !== undefined) {
+      this.createRoom(this.app_name);
+    }
+  },
   methods: {
     createRoom: function(room_name) {
       this.survey_title = room_name;
@@ -51,7 +57,7 @@ export default {
       this.socket.addEventListener("message", this.handlerData);
       this.socket.addEventListener("close", this.close);
       this.survey_started = true;
-      //   eventBus.goUrl("/" + this.room_name);
+      this.goUrl("/" + this.room_name);
     },
     opening: function(e) {
       console.log("opening");
@@ -98,6 +104,9 @@ export default {
           message: e
         })
       );
+    },
+    goUrl(url) {
+      history.pushState({}, null, url);
     }
   }
 };
