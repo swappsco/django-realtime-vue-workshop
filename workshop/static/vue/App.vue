@@ -32,7 +32,31 @@ export default {
   },
   methods: {
     createRoom: function(room_name) {
+      this.survey_title = room_name;
+      this.room_name = room_name
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
+      this.channel = this.room_name;
+      this.socket = new WebSocket(
+        "ws://" + window.location.host + "/ws/surveys/" + this.room_name + "/"
+      );
+      this.socket.addEventListener("open", this.opening);
+      this.socket.addEventListener("message", this.handlerData);
+      this.socket.addEventListener("close", this.close);
       this.survey_started = true;
+      //   eventBus.goUrl("/" + this.room_name);
+    },
+    opening: function(e) {
+      console.log("opening");
+    },
+    handlerData: function(e) {
+      var data = JSON.parse(e.data);
+      console.log(data);
+    },
+    close: function(e) {
+      console.error("Socket closed unexpectedly");
     }
   }
 };
