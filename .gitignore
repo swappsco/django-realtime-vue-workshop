@@ -288,3 +288,4 @@ workshop/media/
 # Ignore bundles
 workshop/static/bundles/
 webpack-stats.json
+webpack-stats-prod.json
