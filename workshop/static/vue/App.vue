@@ -32,7 +32,8 @@ export default {
       socket: null,
       survey_started: false,
       datacollection: {},
-      results: {}
+      results: {},
+      protocol: window.location.href.startsWith("https") ? "wss" : "ws"
     };
   },
   created: function() {
@@ -51,7 +52,7 @@ export default {
         .toLowerCase();
       this.channel = this.room_name;
       this.socket = new WebSocket(
-        "ws://" + window.location.host + "/ws/surveys/" + this.room_name + "/"
+        `${this.protocol}://${window.location.host}/ws/surveys/${this.room_name}/`
       );
       this.socket.addEventListener("open", this.opening);
       this.socket.addEventListener("message", this.handlerData);
